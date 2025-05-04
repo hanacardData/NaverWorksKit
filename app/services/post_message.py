@@ -19,17 +19,17 @@ def _set_headers() -> dict[str, str]:
     return {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
 
 
-def _set_message_payload(message: str) -> dict[str, dict[str, str]]:
+def _set_text_payload(message: str) -> dict[str, dict[str, str]]:
     return {"content": {"type": "text", "text": message}}
 
 
 @retry(tries=3, delay=1, backoff=2, exceptions=(httpx.RequestError, httpx.HTTPError))
-async def post_message_to_channel(message: str, channel_id: str) -> None:
+async def post_message_to_channel(channel_id: str, message: str) -> None:
     url = CHANNEL_MESSAGE_URL.format(bot_id=settings.bot_id, channel_id=channel_id)
     async with httpx.AsyncClient() as client:
         try:
             response = await client.post(
-                url, headers=_set_headers(), json=_set_message_payload(message)
+                url, headers=_set_headers(), json=_set_text_payload(message)
             )
             response.raise_for_status()
         except (httpx.RequestError, httpx.HTTPStatusError) as e:
@@ -38,12 +38,12 @@ async def post_message_to_channel(message: str, channel_id: str) -> None:
 
 
 @retry(tries=3, delay=1, backoff=2, exceptions=(httpx.RequestError, httpx.HTTPError))
-async def post_message_to_user(message: str, user_id: str) -> None:
+async def post_message_to_user(user_id: str, message: str) -> None:
     url = USER_MESSAGE_URL.format(bot_id=settings.bot_id, user_id=user_id)
     async with httpx.AsyncClient() as client:
         try:
             response = await client.post(
-                url, headers=_set_headers(), json=_set_message_payload(message)
+                url, headers=_set_headers(), json=_set_text_payload(message)
             )
             response.raise_for_status()
         except (httpx.RequestError, httpx.HTTPStatusError) as e:
