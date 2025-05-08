@@ -6,7 +6,7 @@ import requests
 from cryptography.hazmat.primitives import serialization
 from logger import logger
 
-from app.config.settings import settings
+from bot.config.settings import settings
 
 
 class TokenManager:
