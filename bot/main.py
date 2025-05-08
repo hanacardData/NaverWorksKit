@@ -4,9 +4,9 @@ from fastapi import FastAPI, Header, HTTPException, Request
 from fastapi.responses import JSONResponse
 from uvicorn.config import LOGGING_CONFIG
 
-from app.config.settings import settings
-from app.handlers.event_handler import process_event
-from app.utils.signature import verify_signature
+from bot.config.settings import settings
+from bot.handlers.event_handler import process_event
+from bot.utils.signature import verify_signature
 
 app = FastAPI()
 logger = logging.getLogger(__name__)

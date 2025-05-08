@@ -30,6 +30,6 @@ pip install -r requirements.txt
 
 4. Run the FastAPI server with Uvicorn
 ```bash
-uvicorn app.main:app --reload --host 0.0.0.0 --port 8001 # dev
-uvicorn app.main:app --host 0.0.0.0 --port 8001 --workers 4 # production
+uvicorn bot.main:app --reload --host 0.0.0.0 --port 8001 # dev
+uvicorn bot.main:app --host 0.0.0.0 --port 8001 --workers 4 # production
 ```

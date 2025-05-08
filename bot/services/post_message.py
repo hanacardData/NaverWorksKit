@@ -1,10 +1,9 @@
-### app/services/post_message.py
 import httpx
 from retry import retry
 
-from app.config.settings import settings
-from app.logger import logger
-from app.services.access_token import token_manager
+from bot.config.settings import settings
+from bot.logger import logger
+from bot.services.access_token import token_manager
 
 CHANNEL_MESSAGE_URL = (
     "https://www.worksapis.com/v1.0/bots/{bot_id}/channels/{channel_id}/messages"
